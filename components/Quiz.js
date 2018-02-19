@@ -5,6 +5,7 @@ import {black, green, grey, red, white} from "../utils/colors";
 import {fetchDeck} from "../utils/api";
 import {connect} from "react-redux";
 import {Ionicons} from '@expo/vector-icons';
+import {saveLastQuizDate} from "../utils/notifications";
 
 class Quiz extends Component {
 
@@ -62,6 +63,7 @@ class Quiz extends Component {
         const numberOfCards = deck.cards.length;
         if ((currentPos +1) === numberOfCards) {
             nextLabel = 'Show Score';
+            saveLastQuizDate();
         }
         if (currentPos >= numberOfCards) {
             const percent = Math.round((counterCorrect/numberOfCards) * 10000) / 100;

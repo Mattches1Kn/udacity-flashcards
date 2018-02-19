@@ -1,7 +1,7 @@
-import {AsyncStorage} from 'react-native'
+import {AsyncStorage} from 'react-native';
 import {addDeck, receiveDeck, receiveDecks} from "../actions/index";
 
-const DECK_STORAGE_KEY = 'mattches:udacity:decks_v1';
+const DECK_STORAGE_KEY = 'mattches:udacity:decks_v2';
 
 export function fetchDecks(dispatch) {
     return AsyncStorage.getItem(DECK_STORAGE_KEY)

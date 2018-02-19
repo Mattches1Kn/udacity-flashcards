@@ -1,13 +1,18 @@
 import React from 'react';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 import {StatusBar, View} from 'react-native';
-import { Constants } from 'expo';
+import {Constants} from 'expo';
 import {black} from "./utils/colors";
 import MainNavigator from "./components/Navigation";
 import reducer from './reducers';
+import {setLocalNotification} from "./utils/notifications";
 
 export default class App extends React.Component {
+
+    componentDidMount() {
+        setLocalNotification();
+    }
 
     render() {
         return (
