@@ -10,6 +10,7 @@ import {black, red, white} from "../utils/colors";
 
 export const NAVIGATION_HOME = 'Home';
 export const NAVIGATION_QUIZ = 'Quiz';
+export const NAVIGATION_ADD_DECK = 'AddDeck';
 export const NAVIGATION_ADD_CARD = 'AddCard';
 export const NAVIGATION_DECK_VIEW = 'DeckView';
 
@@ -21,7 +22,7 @@ const HomeTabs = TabNavigator({
             tabBarIcon: ({ tintColor }) => <Ionicons name='ios-albums-outline' size={30} color={tintColor} />
         },
         tabBarOptions : {
-            headerTitle: 'Decks2',
+            headerTitle: 'Decks',
         }
     },
     AddDeck: {

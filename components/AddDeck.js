@@ -4,8 +4,9 @@ import {createDeck} from "../utils/api";
 import {connect} from "react-redux";
 import * as uuid from "uuid";
 import {FormInput, FormLabel} from "react-native-elements";
-import {NAVIGATION_HOME} from "./Navigation";
+import {NAVIGATION_DECK_VIEW, NAVIGATION_HOME} from "./Navigation";
 import {black, white} from "../utils/colors";
+import {NavigationActions} from "react-navigation";
 
 class AddDeck extends Component {
 
@@ -16,8 +17,17 @@ class AddDeck extends Component {
 
     submit = () => {
         if (this.state.text.length > 2) {
-            createDeck(this.props.dispatch, uuid.v1(), {name: this.state.text, cards:[]});
-            this.props.navigation.navigate(NAVIGATION_HOME);
+            const id = uuid.v1();
+            const resetAction = NavigationActions.reset({
+                index: 1,
+                actions: [
+                    NavigationActions.navigate({ routeName: NAVIGATION_HOME }),
+                    NavigationActions.navigate({ routeName: NAVIGATION_DECK_VIEW, params: { key: id, name: this.state.text } })
+                ]
+            });
+
+            createDeck(this.props.dispatch, id, {name: this.state.text, cards:[]})
+                .then(this.props.navigation.dispatch(resetAction));
         } else {
             this.setState(() => ({error:true}));
         }
@@ -49,7 +59,6 @@ class AddDeck extends Component {
         );
     }
 }
-
 
 const styles = StyleSheet.create({
     inputForm: {
